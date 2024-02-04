@@ -59,10 +59,9 @@ def afficher_animaux_cage():
         print(f"Aucun animal dans la cage {cage_id}.")
 
 def calculer_superficie_totale():
-    cursor.execute("SELECT SUM(superficie) FROM cage")
-    superficie_totale = cursor.fetchone()[0]
+    cursor.execute("SELECT SUM(superficie) FROM cage WHERE superficie IS NOT NULL")
+    superficie_totale = cursor.fetchone()[0]  # Utilisez fetchone() car nous attendons une seule valeur
     print(f"Superficie totale de toutes les cages : {superficie_totale} m²")
-
 # Interface utilisateur
 while True:
     print("\nMenu:")
